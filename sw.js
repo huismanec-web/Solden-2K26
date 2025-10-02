@@ -1,7 +1,7 @@
 const CACHE_NAME = 'solden_v0.1';
 const urlsToCache = [
   '/',
-  '/solden_v0.1.html',
+  '/index.html',
   '/manifest.json',
   '/Solden-2K26/'
 ];
