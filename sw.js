@@ -1,7 +1,7 @@
 const CACHE_NAME = 'solden-ski-v1';
 const urlsToCache = [
   '/',
-  '/solden_ski_website_nl_v2.html',
+  '/solden_v0.1.html',
   '/manifest.json'
 ];
 
@@ -31,4 +31,5 @@ self.addEventListener('activate', event => {
       );
     })
   );
+
 });
