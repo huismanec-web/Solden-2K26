@@ -918,7 +918,45 @@
                 </div>
             </div>
 
-<img loading="lazy" src="/sites/omni00.d8.webpactserver.nl/files/styles/pistekaart_teaser/public/pistekaart/Pistekaart_S%C3%B6lden_XL.jpg?itok=d_SATFgK" width="850" height="450" alt="Pistekaart Sölden" class="image-style-pistekaart-teaser">
+            <div style="text-align:center;">
+                <img
+                    loading="lazy"
+                    src="Images/Sölden_Winterpanorama_25-26 (1).jpg"
+                    width="850" height="450"
+                    alt="Pistekaart Sölden"
+                    class="image-style-pistekaart-teaser"
+                    id="pistekaart-img"
+                    style="cursor:zoom-in;max-width:100%;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.13);"
+                    onclick="openFullscreenImage(this)"
+                >
+                <div style="font-size:0.95em;color:#555;margin-top:6px;">Klik/tik voor volledig scherm</div>
+            </div>
+            <div style="text-align:center;">
+                <img
+                    loading="lazy"
+                    src="Images/Sölden_Winterpanorama_25-26_page-0001.jpg"
+                    width="850" height="450"
+                    alt="Pistekaart Sölden"
+                    class="image-style-pistekaart-teaser"
+                    id="pistekaart-img"
+                    style="cursor:zoom-in;max-width:100%;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.13);"
+                    onclick="openFullscreenImage(this)"
+                >
+                <div style="font-size:0.95em;color:#555;margin-top:6px;">Klik/tik voor volledig scherm</div>
+            </div>
+
+            <script>
+            function openFullscreenImage(img) {
+                if (window.innerWidth < 900 && img.requestFullscreen) {
+                    img.requestFullscreen();
+                } else if (window.innerWidth < 900 && img.webkitRequestFullscreen) {
+                    img.webkitRequestFullscreen();
+                } else {
+                    // fallback: open in new tab for desktop
+                    window.open(img.src, '_blank');
+                }
+            }
+            </script>
 
             <div class="slope-grid">
                 <div class="slope-item">
