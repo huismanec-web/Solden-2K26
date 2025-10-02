@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sölden Ski Trip 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 20px;
+            padding: 20px 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .trip-details {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 8px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-tab {
+            flex: 1 1 auto;
+            min-width: 100px;
+            max-width: 200px;
+            padding: 12px 8px;
+            margin: 4px;
+            background: transparent;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            opacity: 0.9;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card h3 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .weather-card {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 15px 8px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .weather-icon {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 8px;
+        }
+
+        .weather-temp {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .weather-condition {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .route-section {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .route-step {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .route-icon {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .route-text {
+            flex: 1;
+        }
+
+        .route-text strong {
+            display: block;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            margin-bottom: 4px;
+            color: #2c3e50;
+        }
+
+        .image-placeholder {
+            border: 2px dashed #bdc3c7;
+            background: #ecf0f1;
+            padding: 30px 15px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 12px;
+            color: #7f8c8d;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-placeholder.small {
+            min-height: 120px;
+            padding: 20px 10px;
+        }
+
+        .placeholder-icon {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 10px;
+        }
+
+        .placeholder-title {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .placeholder-subtitle {
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            line-height: 1.4;
+        }
+
+        .tips-section {
+            background: rgba(52, 73, 94, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .checklist {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .checklist h3 {
+            color: #b7790f;
+            margin-bottom: 15px;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            top: -2px;
+        }
+
+        .slope-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .slope-item {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 5px solid #27ae60;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slope-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .slope-item.red { border-left-color: #e74c3c; }
+        .slope-item.black { border-left-color: #2c3e50; }
+
+        .slope-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+
+        .slope-details {
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .open { background-color: #27ae60; }
+        .closed { background-color: #e74c3c; }
+        .partial { background-color: #f39c12; }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .print-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .update-info {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .icon-library {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #3498db;
+        }
+
+        .icon-category {
+            margin-bottom: 15px;
+        }
+
+        .icon-category h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .icons {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            user-select: all;
+            cursor: copy;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 8px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-tab {
+                flex: none;
+                margin: 2px 0;
+                min-width: 200px;
+                width: 80%;
+                max-width: 300px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .weather-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .route-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .route-icon {
+                margin-bottom: 8px;
+                margin-right: 0;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slope-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .print-btn {
+                bottom: 20px;
+                top: auto;
+                right: 20px;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .weather-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .print-btn {
+                display: none;
+            }
+            
+            .tab-content {
+                display: block !important;
+                page-break-before: always;
+                margin-bottom: 40px;
+            }
+            
+            .tab-content:first-child {
+                page-break-before: auto;
+            }
+            
+            .nav-tabs {
+                display: none;
+            }
+
+            .icon-library {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()" title="Print PDF">🖨️</button>
+
+    <div class="container">
+        <div class="header">
+            <h1>🎿 Sölden Ski Avontuur 2026 ⛷️</h1>
+            <div class="trip-details">
+                <strong>📅 Reis:</strong> 25-31 januari 2026<br>
+                <strong>🎿 Skidagen:</strong> 26-30 januari (5 dagen)<br>
+                <strong>📍 Vertrek:</strong> Utrecht, Nederland
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('overview')">📋 Overzicht</button>
+            <button class="nav-tab" onclick="showTab('travel')">🚗 Reizen</button>
+            <button class="nav-tab" onclick="showTab('weather')">🌤️ Weer</button>
+            <button class="nav-tab" onclick="showTab('slopes')">⛷️ Pistes</button>
+            <button class="nav-tab" onclick="showTab('practical')">📱 Info</button>
+        </div>
+
+        <!-- OVERZICHT TAB -->
+        <div id="overview" class="tab-content active">
+            <h2 class="section-title">📋 Reis Overzicht</h2>
+            
+            <div class="image-placeholder">
+                <div class="placeholder-icon">🏔️</div>
+                <div class="placeholder-title">HOOFDFOTO</div>
+                <div class="placeholder-subtitle">
+                    Voeg toe: Sölden resort foto, groepsfoto, of berglandschap<br>
+                    <strong>Vervangen:</strong> Rechtermuisknop → Inspecteren → Vervang met jouw foto URL
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">31</span>
+                    <div class="stat-label">Totaal Pistes</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">144</span>
+                    <div class="stat-label">KM Pistes</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">33</span>
+                    <div class="stat-label">Liften</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">3.340m</span>
+                    <div class="stat-label">Max Hoogte</div>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🏨 Accommodatie</h3>
+                    <p><strong>Hotel:</strong> [Voeg hotelnaam toe]</p>
+                    <p><strong>Adres:</strong> [Voeg adres toe]</p>
+                    <p><strong>Inchecken:</strong> 25 jan</p>
+                    <p><strong>Uitchecken:</strong> 31 jan</p>
+                    <p><strong>Telefoon:</strong> [Voeg telefoonnummer toe]</p>
+                </div>
+                <div class="info-card">
+                    <h3>👥 Groep Details</h3>
+                    <p><strong>Groepsgrootte:</strong> [Voeg aantal toe]</p>
+                    <p><strong>Leden:</strong></p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li>• [Voeg naam 1 toe]</li>
+                        <li>• [Voeg naam 2 toe]</li>
+                        <li>• [Voeg naam 3 toe]</li>
+                        <li>• [Voeg meer namen toe]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h3>🎯 Reis Hoogtepunten</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <strong>🏔️ Gletsjer Skiën:</strong><br>
+                        Twee gletsjergebieden met gegarandeerde sneeuw op 3.300m+ hoogte
+                    </div>
+                    <div class="tip-item">
+                        <strong>🎿 Gevarieerd Terrein:</strong><br>
+                        144km aan pistes van beginnersvriendelijk tot expert zwarte pistes
+                    </div>
+                    <div class="tip-item">
+                        <strong>🌟 Après-Ski:</strong><br>
+                        Beroemd nachtleven en bergrestaurants in de Oostenrijkse Alpen
+                    </div>
+                    <div class="tip-item">
+                        <strong>📸 Prachtige Uitzichten:</strong><br>
+                        Adembenemende Alpine panorama's en foto mogelijkheden
+                    </div>
+                </div>
+            </div>
+
+            <!-- ICONEN BIBLIOTHEEK -->
+            <div class="icon-library">
+                <h3>🎨 Iconen Bibliotheek - Kopieer & Plak</h3>
+                <div class="icon-category">
+                    <h4>⛷️ Ski & Winter:</h4>
+                    <div class="icons">🎿 ⛷️ 🏂 🚡 🚠 🏔️ ❄️ ⛄ 🌨️ 🧊 🥶 🧤 🧣 🧥 👓 🥽 ⛸️ 🏒 🛷 🎯 🏁</div>
+                </div>
+                <div class="icon-category">
+                    <h4>🚗 Transport & Reizen:</h4>
+                    <div class="icons">🚗 🚐 🚌 ✈️ 🚁 🛣️ 🗺️ 🧭 ⛽ 🚦 🚧 🛑 🚏 🚉 🚇 🚊 🚲 🛴 🛵 🏍️</div>
+                </div>
+                <div class="icon-category">
+                    <h4>🌤️ Weer:</h4>
+                    <div class="icons">☀️ 🌤️ ⛅ 🌥️ ☁️ 🌦️ 🌧️ ⛈️ 🌩️ 🌨️ ❄️ 💨 💧 🌡️ 🌈 ⭐ 🌟 ✨ 🌙 🌛 🌜</div>
+                </div>
+                <div class="icon-category">
+                    <h4>🏨 Accommodatie & Eten:</h4>
+                    <div class="icons">🏨 🏠 🏘️ 🏡 🛏️ 🛌 🚿 🛁 🍽️ 🍕 🍝 🥘 🍖 🥩 🍞 🧀 🍷 🍺 ☕ 🥤 🧊</div>
+                </div>
+                <div class="icon-category">
+                    <h4>💰 Geld & Kosten:</h4>
+                    <div class="icons">💰 💳 💵 💴 💶 💷 🏧 💸 💲 📊 📈 📉 🧾 🛒 🛍️ 💼 💎 🪙</div>
+                </div>
+                <div class="icon-category">
+                    <h4>📱 Technologie:</h4>
+                    <div class="icons">📱 📞 💻 ⌨️ 🖥️ 📟 📺 📷 📸 📹 🔋 🔌 💡 🔦 📡 🛰️ 📶 📳 📴</div>
+                </div>
+                <div class="icon-category">
+                    <h4>⚠️ Veiligheid & Noodgeval:</h4>
+                    <div class="icons">⚠️ 🚨 🚑 🏥 💊 🩹 🩺 ⛑️ 🦺 🚪 🚥 ⛔ 📵 🔞 ⚡ 🔥 💥 ☢️ ☣️</div>
+                </div>
+                <div class="icon-category">
+                    <h4>🎯 Activiteiten:</h4>
+                    <div class="icons">🎯 🎮 🎲 🎪 🎭 🎨 🎬 🎤 🎧 🎵 🎶 🥳 🎉 🎊 🎈 🎁 🎂 🍰 🥂 🍾</div>
+                </div>
+                <div class="icon-category">
+                    <h4>📅 Tijd & Planning:</h4>
+                    <div class="icons">📅 📆 🗓️ ⏰ ⏱️ ⏲️ 🕐 🕑 🕒 🕓 🕔 🕕 🕖 🕗 🕘 🕙 🕚 🕛 ⌚ ⏳ ⌛</div>
+                </div>
+                <div class="icon-category">
+                    <h4>🎨 Symbolen & Pijlen:</h4>
+                    <div class="icons">✅ ❌ ⭐ ⚡ 💯 🔥 💎 👑 🏆 🥇 🥈 🥉 🎖️ 🏅 ➡️ ⬅️ ⬆️ ⬇️ ↗️ ↘️</div>
+                </div>
+                <div class="icon-category">
+                    <h4>👥 Mensen & Emoties:</h4>
+                    <div class="icons">👥 👤 👨‍👩‍👧‍👦 👪 👫 👬 👭 😀 😃 😄 😁 😊 😍 🥰 😘 😎 🤩 🥳 😇 🙂 😉</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REIZEN TAB -->
+        <div id="travel" class="tab-content">
+            <h2 class="section-title">🚗 Reizen & Route</h2>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">9u-11u</span>
+                    <div class="stat-label">Rijtijd</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">901km</span>
+                    <div class="stat-label">Afstand</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">~€110/auto</span>
+                    <div class="stat-label">Brandstof</div>
+                    <div class="stat-label" style="font-size: 0.85em;">obv €1.70/liter en 1 op 14</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">€12,40</span>
+                    <div class="stat-label">Vignet</div>
+                </div>
+            </div>
+
+            <div style="width:100%; height:350px; border-radius:12px; overflow:hidden; margin:20px 0; box-shadow:0 5px 15px rgba(0,0,0,0.15);">
+                <iframe
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    loading="lazy"
+                    allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=Rettenbachlweg%2026,%206450%20S%C3%B6lden,%20Austria(Haus%20Crystal)&output=embed">
+                </iframe>
+            </div>
+
+            <div class="route-section">
+                <h3>🛣️ Aanbevolen Route</h3>
+                <div class="route-step">
+                    <div class="route-icon">🏠</div>
+                    <div class="route-text">
+                        <strong>Vertrektijd</strong>
+                        Vertrek vroeg (5:00 aanbevolen) om die avond nog een weizen in de zon te kunnen drinken. Idealiter doen we ook nog even boodschappen.
+                    </div>
+                </div>
+                <div class="route-step">
+                    <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 1rem;">
+                        <span class="route-icon">⛽</span>
+                    </div>
+                    <div class="route-text">
+                        <strong>Tanken</strong>
+                        Tank zoveel mogelijk in Oostenrijk, daarna Duitsland. Het scheelt aanzienlijk als je de snelweg even afgaat.
+                    </div>
+                </div>
+                <div class="route-step">
+                    <div class="route-icon">🇦🇹</div>
+                    <div class="route-text">
+                        <strong>Vignet</strong>
+                        Je kunt je vignet kopen bij de grens of vooraf <a href="https://shop.asfinag.at/nl/tolproducten/het-digitale-vignet/?type=Car" target="_blank" rel="noopener">online</a>. 
+                    </div>
+                </div>
+                <div class="route-step">
+                    <div class="route-icon">🥩</div>
+                    <div class="route-text">
+                        <strong>Aankomst Sölden</strong>
+                        Dikke schnitzel eten en aan de Weizen.
+                    </div>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <h3>📋 Reis Checklist per auto</h3>
+                <ul>
+                    <li>Winterbanden gemonteerd (4-season banden gelden alleen met het <a href="https://shop.asfinag.at/nl/tolproducten/het-digitale-vignet/?type=Car" target="_blank" rel="noopener">3PFMS symbool</a>)</li>
+                    <li>Sneeuwkettingen ingepakt (Verplicht in Oostenrijk). Mocht je geen sneeuwkettingen hebben: je kunt ze bestellen op Amazon en ongeopend retourneren na de vakantie.</li>
+                    <li>Oostenrijks vignet gekocht a €12,40. Dit kan <a href="https://shop.asfinag.at/nl/tolproducten/het-digitale-vignet/?type=Car" target="_blank" rel="noopener">online</a>, en hoeft niet meer 14 dagen van tevoren gekocht te worden.</li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <div class="checklist">
+                <h3>📋 Paklijst per persoon</h3>
+                <ul>
+                    <li>Geldig paspoort/ID voor alle reizigers.</li>
+                    <li>Barry vergeet je portemonnee niet!</li>
+                    <li>Paar honderd euro. Cash is king in Duitsland en Oostenrijk. Vaak betaal je daar transactiekosten om geld te pinnen dus neem het mee.</li>
+                    <li>Zonnebril</li>
+                    <li>Skispullen: Kleding, Gouden Volants etc.</li>
+                    <li>...</li>
+                    <li>Handdoeken en bedlinnen zijn inbegrepen</li>
+                </ul>
+            </div>         
+        </div>
+
+        <!-- WEER TAB -->
+        <div id="weather" class="tab-content">
+            <h2 class="section-title">🌤️ Weersvoorspelling</h2>
+
+            <div class="weather-grid">
+                <div class="weather-card">
+                    <div><strong>ZON 26</strong></div>
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp">-8° / -15°C</div>
+                    <div class="weather-condition">Zonnig</div>
+                </div>
+                <div class="weather-card">
+                    <div><strong>MAA 27</strong></div>
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp">-5° / -12°C</div>
+                    <div class="weather-condition">Zonnig</div>
+                </div>
+                <div class="weather-card">
+                    <div><strong>DIN 28</strong></div>
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp">-3° / -10°C</div>
+                    <div class="weather-condition">Zonnig</div>
+                </div>
+                <div class="weather-card">
+                    <div><strong>WOE 29</strong></div>
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp">-6° / -13°C</div>
+                    <div class="weather-condition">Zonnig</div>
+                </div>
+                <div class="weather-card">
+                    <div><strong>DON 30</strong></div>
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp">-4° / -11°C</div>
+                    <div class="weather-condition">Zonnig</div>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>❄️ Sneeuwcondities</h3>
+                    <p><strong>Basis Dikte:</strong> 85cm</p>
+                    <p><strong>Top Dikte:</strong> 165cm</p>
+                    <p><strong>Verse Sneeuw:</strong> 25-35cm verwacht</p>
+                    <p><strong>Kwaliteit:</strong> Poeder/Aangestampt</p>
+                    <p><strong>Laatste Sneeuwval:</strong> 24 jan</p>
+                </div>
+                <div class="info-card">
+                    <h3>🌬️ Condities</h3>
+                    <p><strong>Wind:</strong> 5-15 km/u</p>
+                    <p><strong>Zicht:</strong> Goed tot Uitstekend</p>
+                    <p><strong>UV Index:</strong> Hoog (bergzon)</p>
+                    <p><strong>Zonsopgang:</strong> 7:45</p>
+                    <p><strong>Zonsondergang:</strong> 17:15</p>
+                </div>
+            </div>
+
+            <div class="image-placeholder small">
+                <div class="placeholder-icon">📊</div>
+                <div class="placeholder-title">WEER GRAFIEKEN</div>
+                <div class="placeholder-subtitle">Voeg toe: Weer app screenshots, sneeuwvoorspellingen</div>
+            </div>
+
+            <div class="tips-section">
+                <h3>🎿 Weer Aanbevelingen</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <strong>☀️ Beste Dagen:</strong><br>
+                        Dinsdag & Woensdag - Heldere luchten, geweldig zicht voor foto's
+                    </div>
+                    <div class="tip-item">
+                        <strong>❄️ Poeder Dagen:</strong><br>
+                        Zondag & Woensdag - Verse sneeuw verwacht, perfect voor off-piste
+                    </div>
+                    <div class="tip-item">
+                        <strong>🎿 Gevorderd Skiën:</strong><br>
+                        Maandag-Woensdag - Beste algemene condities voor uitdagende runs
+                    </div>
+                    <div class="tip-item">
+                        <strong>📸 Fotografie:</strong><br>
+                        Dinsdag ochtend - Kristalheldere condities, prachtige Alpine uitzichten
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://www.snow-forecast.com/resorts/Solden" target="_blank" class="action-btn">
+                    ❄️ Sneeuwvoorspelling
+                </a>
+                <a href="https://weather.com/weather/tenday/l/Solden+Austria" target="_blank" class="action-btn">
+                    🌦️ Gedetailleerd Weer
+                </a>
+            </div>
+        </div>
+
+        <!-- PISTES TAB -->
+        <div id="slopes" class="tab-content">
+            <h2 class="section-title">⛷️ Pistes & Liften</h2>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">28/31</span>
+                    <div class="stat-label">Open Pistes</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">135km</span>
+                    <div class="stat-label">Open KM</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">31/33</span>
+                    <div class="stat-label">Open Liften</div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">Gletsjer Open</div>
+                </div>
+            </div>
+
+<img loading="lazy" src="/sites/omni00.d8.webpactserver.nl/files/styles/pistekaart_teaser/public/pistekaart/Pistekaart_S%C3%B6lden_XL.jpg?itok=d_SATFgK" width="850" height="450" alt="Pistekaart Sölden" class="image-style-pistekaart-teaser">
+
+            <div class="slope-grid">
+                <div class="slope-item">
+                    <div class="slope-name">🟦 Makkelijke Pistes (Blauw)</div>
+                    <div class="slope-details">
+                        <span class="status-indicator open"></span>12/13 open (45km)<br>
+                        Perfect voor beginners en warming-up runs
+                    </div>
+                </div>
+                <div class="slope-item red">
+                    <div class="slope-name">🟥 Gemiddeld (Rood)</div>
+                    <div class="slope-details">
+                        <span class="status-indicator open"></span>14/15 open (85km)<br>
+                        Geweldige variatie voor gevorderde skiërs
+                    </div>
+                </div>
+                <div class="slope-item black">
+                    <div class="slope-name">⬜ Gevorderd (Zwart)</div>
+                    <div class="slope-details">
+                        <span class="status-indicator partial"></span>2/3 open (14km)<br>
+                        Uitdagende runs voor expert skiërs
+                    </div>
+                </div>
+                <div class="slope-item">
+                    <div class="slope-name">🚡 Gletsjer Gebieden</div>
+                    <div class="slope-details">
+                        <span class="status-indicator open"></span>Beide gletsjers operationeel<br>
+                        Gegarandeerde sneeuwcondities op 3.300m+
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🏔️ Belangrijkste Ski Gebieden</h3>
+                    <p><strong>Rettenbach Gletsjer:</strong> 3.340m</p>
+                    <p><strong>Tiefenbach Gletsjer:</strong> 3.309m</p>
+                    <p><strong>Gaislachkogl:</strong> 3.058m</p>
+                    <p><strong>Giggijoch:</strong> 2.284m</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Openingstijden</h3>
+                    <p><strong>Hoofdseizoen:</strong> 8:30 - 16:00</p>
+                    <p><strong>Nachtskiën:</strong> Woe & Zat</p>
+                    <p><strong>Eerste Lift:</strong> 8:30</p>
+                    <p><strong>Laatste Lift:</strong> 16:00</p>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h3>🎿 Ski Aanbevelingen</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <strong>🌅 Ochtend Strategie:</strong><br>
+                        Begin met gletsjer runs terwijl condities het beste zijn, minder druk vroeg
+                    </div>
+                    <div class="tip-item">
+                        <strong>🥪 Lunch Plekken:</strong><br>
+                        Reserveer berg restaurants vroeg, probeer Gaislachkogl restaurant
+                    </div>
+                    <div class="tip-item">
+                        <strong>📸 Foto Punten:</strong><br>
+                        Top van Gaislachkogl voor 360° uitzichten, Rettenbach voor gletsjer shots
+                    </div>
+                    <div class="tip-item">
+                        <strong>⚠️ Veiligheid Tips:</strong><br>
+                        Ski altijd met buddy, ken je grenzen, respecteer piste sluitingen
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://www.soelden.com/en/winter/ski-area/slopes-lifts/" target="_blank" class="action-btn">
+                    📊 Live Piste Status
+                </a>
+                <a href="https://www.soelden.com/en/winter/ski-area/piste-map-webcams/interactive-piste-map/" target="_blank" class="action-btn">
+                    🗺️ Interactieve Kaart
+                </a>
+            </div>
+        </div>
+
+        <!-- PRAKTISCHE INFO TAB -->
+        <div id="practical" class="tab-content">
+            <h2 class="section-title">📱 Praktische Informatie</h2>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🚑 Noodcontacten</h3>
+                    <p><strong>Noodgeval (Oostenrijk):</strong> 144</p>
+                    <p><strong>Politie:</strong> 133</p>
+                    <p><strong>Berg Redding:</strong> 140</p>
+                    <p><strong>Ski Patrouille:</strong> Op pistes</p>
+                    <p><strong>Medisch Centrum:</strong> Sölden</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Budget Overzicht</h3>
+                    <p><strong>5-Dagen Skipas:</strong> €280</p>
+                    <p><strong>Materiaal Huur:</strong> €200</p>
+                    <p><strong>Eten (5 dagen):</strong> €200-300</p>
+                    <p><strong>Totaal per persoon:</strong> €500-700</p>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <h3>🎒 Ski Uitrusting Checklist</h3>
+                <ul>
+                    <li>Ski jas (waterdicht, ademend)</li>
+                    <li>Ski broek (geïsoleerd of shell met lagen)</li>
+                    <li>Thermo onderkleding (merino wol voorkeurskleuze)</li>
+                    <li>Ski sokken (vochtafvoerend, meerdere paren)</li>
+                    <li>Ski handschoenen + reserve liner handschoenen</li>
+                    <li>Ski bril (meerdere lens opties)</li>
+                    <li>Ski helm (verplicht in veel gebieden)</li>
+                    <li>Zonnebril (gletsjer-rated UV bescherming)</li>
+                    <li>Hoge SPF zonnebrandcrème (bergzon is intens)</li>
+                    <li>Lippenbalsem met SPF bescherming</li>
+                    <li>Après-ski kleding & comfortabele laarzen</li>
+                    <li>Warme muts voor niet-ski activiteiten</li>
+                </ul>
+            </div>
+
+            <div class="image-placeholder small">
+                <div class="placeholder-icon">📱</div>
+                <div class="placeholder-title">APP SCREENSHOTS</div>
+                <div class="placeholder-subtitle">Voeg toe: Handige reis & ski apps interface screenshots</div>
+            </div>
+
+            <div class="tips-section">
+                <h3>📱 Handige Apps & Services</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <strong>🌨️ Weer Apps:</strong><br>
+                        • Snow-forecast.com<br>
+                        • Windy.com<br>
+                        • Mountain-forecast.com
+                    </div>
+                    <div class="tip-item">
+                        <strong>⛷️ Ski Apps:</strong><br>
+                        • Sölden Officiële App<br>
+                        • Ski Tracks (GPS tracking)<br>
+                        • PowderProject
+                    </div>
+                    <div class="tip-item">
+                        <strong>🧭 Navigatie:</strong><br>
+                        • Google Maps (offline download)<br>
+                        • Maps.me<br>
+                        • Waze (verkeer updates)
+                    </div>
+                    <div class="tip-item">
+                        <strong>🔧 Hulpmiddelen:</strong><br>
+                        • Google Translate<br>
+                        • XE Currency<br>
+                        • Oostenrijk Nood App
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🍽️ Eten Budget</h3>
+                    <p><strong>Berg Lunch:</strong> €15-25</p>
+                    <p><strong>Diner (middenmoot):</strong> €25-40</p>
+                    <p><strong>Après-ski drankjes:</strong> €30-50</p>
+                    <p><strong>Ontbijt:</strong> €10-15</p>
+                    <p><strong>Snacks/drankjes:</strong> €20-30</p>
+                </div>
+                <div class="info-card">
+                    <h3>🛍️ Shopping & Souvenirs</h3>
+                    <p><strong>Ski uitrusting:</strong> €50-200</p>
+                    <p><strong>Kleding/gear:</strong> €30-100</p>
+                    <p><strong>Oostenrijkse souvenirs:</strong> €10-50</p>
+                    <p><strong>Lokale specialiteiten:</strong> €15-40</p>
+                    <p><strong>Foto's/herinneringen:</strong> €20-60</p>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <h3>📝 Dagelijkse Voorbereiding Checklist</h3>
+                <ul>
+                    <li>Check weersvoorspelling en kleed je dienovereenkomstig</li>
+                    <li>Breng zonnebrandcrème aan (gezicht, nek, handen)</li>
+                    <li>Zorg dat skipas makkelijk toegankelijk is</li>
+                    <li>Draag noodcontact informatie bij je</li>
+                    <li>Plan ontmoetingsplekken en tijden met groep</li>
+                    <li>Maak lunch reserveringen indien nodig</li>
+                    <li>Check uitrusting conditie (kanten, bindingen)</li>
+                    <li>Ken locatie van eerste hulp stations</li>
+                    <li>Draag kleine rugzak met essentials</li>
+                    <li>Blijf gehydrateerd - neem waterfles mee</li>
+                </ul>
+            </div>
+
+            <div class="tips-section">
+                <h3>🎿 Pro Ski Tips</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <strong>⏰ Timing:</strong><br>
+                        Eerste liften = verse sneeuw, minder drukte. Lunch 11:30-12:30 om drukte te vermijden.
+                    </div>
+                    <div class="tip-item">
+                        <strong>🗺️ Navigatie:</strong><br>
+                        Download offline piste kaarten. Markeer ontmoetingsplekken op je telefoon.
+                    </div>
+                    <div class="tip-item">
+                        <strong>💧 Hydratatie:</strong><br>
+                        Hoogte + droge lucht = uitdroging. Drink regelmatig water, beperk alcohol.
+                    </div>
+                    <div class="tip-item">
+                        <strong>📷 Fotografie:</strong><br>
+                        Beste licht: 9-11 uur, 14-16 uur. Bescherm telefoon batterij bij kou.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="update-info">
+            <p>📊 Informatie laatst bijgewerkt: <span id="last-update">Laden...</span></p>
+            <p>🔄 Check officiële Sölden website voor real-time updates</p>
+            <p>💙 Geweldige reis gewenst! Veilig skiën! 🎿❄️</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionaliteit
+        function showTab(tabName) {
+            // Verberg alle tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Verwijder active class van alle tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Toon geselecteerde tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Voeg active class toe aan geklilte tab
+            event.target.classList.add('active');
+        }
+
+        // Zet huidige datum
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const updateElement = document.getElementById('last-update');
+            if (updateElement) {
+                updateElement.textContent = now.toLocaleDateString('nl-NL', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        });
+
+        // Mobiele menu verbeteringen
+        function initializeMobileFeatures() {
+            // Voeg touch-vriendelijke interacties toe
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                tab.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Verbeter scroll gedrag op mobiel
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.addEventListener('touchmove', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        }
+
+        // Initialiseer mobiele functies wanneer DOM laadt
+        document.addEventListener('DOMContentLoaded', initializeMobileFeatures);
+
+        // Print optimalisatie
+        window.addEventListener('beforeprint', function() {
+            // Toon alle tabs bij printen
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'block';
+            });
+        });
+
+        window.addEventListener('afterprint', function() {
+            // Herstel tab functionaliteit na printen
+            document.querySelectorAll('.tab-content').forEach(content => {
+                if (!content.classList.contains('active')) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
