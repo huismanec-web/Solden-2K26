@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sölden Ski Trip 2026</title>
@@ -559,7 +561,13 @@
     </style>
 </head>
 <body>
-    <button class="print-btn" onclick="window.print()" title="Print PDF">🖨️</button>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('Service Worker registered:', reg))
+      .catch(err => console.log('Service Worker registration failed:', err));
+  }
+</script> 
 
     <div class="container">
         <div class="header">
