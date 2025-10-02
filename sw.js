@@ -1,8 +1,9 @@
-const CACHE_NAME = 'solden-ski-v1';
+const CACHE_NAME = 'solden_v0.1';
 const urlsToCache = [
   '/',
   '/solden_v0.1.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/Solden-2K26/'
 ];
 
 self.addEventListener('install', event => {
