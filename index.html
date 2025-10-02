@@ -1250,27 +1250,29 @@
           .catch(err => console.log('Service Worker registration failed:', err));
       }
     </script>
-        // PWA Install Prompt
-        let deferredPrompt;
-        const installButton = document.createElement('button');
-        installButton.className = 'install-btn';
-        installButton.innerHTML = '📱';
-        installButton.title = 'Installeer App';
-        document.body.appendChild(installButton);
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installButton.style.display = 'block';
-        });
-
-        installButton.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                installButton.style.display = 'none';
-            }
-        });
+        <script>
+            // PWA Install Prompt
+            let deferredPrompt;
+            const installButton = document.createElement('button');
+            installButton.className = 'install-btn';
+            installButton.innerHTML = '📱';
+            installButton.title = 'Installeer App';
+            document.body.appendChild(installButton);
+    
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installButton.style.display = 'block';
+            });
+    
+            installButton.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    deferredPrompt = null;
+                    installButton.style.display = 'none';
+                }
+            });
+        </script>
 </body>
 </html>
